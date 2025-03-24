@@ -1,4 +1,6 @@
-package entidades;
+package com.senai.augusto.consultasmedicas.entidades;
+
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,7 +19,7 @@ public class Consulta {
 	private Integer id;
 	
 	@Column
-	private String data;
+	private Date data;
 	
 	@Column
 	private Integer horario;
@@ -34,9 +36,7 @@ public class Consulta {
 	private Status status;
 	
 	
-	public Consulta(Integer id, String data, Integer horario, Paciente paciente, Medico medico, Status status) {
-		super();
-		this.id = id;
+	public Consulta(Date data, Integer horario, Paciente paciente, Medico medico, Status status) {
 		this.data = data;
 		this.horario = horario;
 		this.paciente = paciente;
@@ -55,19 +55,6 @@ public class Consulta {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
-
-	public String getData() {
-		return data;
-	}
-
-
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
 
 
 	public Integer getHorario() {
@@ -118,7 +105,7 @@ public class Consulta {
 
 
 
-	private enum Status{
+	public enum Status{
 		AGENDADA,
 		CANCELADA,
 		REALIZADA

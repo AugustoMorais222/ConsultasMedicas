@@ -1,4 +1,4 @@
-package entidades;
+package com.senai.augusto.consultasmedicas.entidades;
 
 import java.util.List;
 

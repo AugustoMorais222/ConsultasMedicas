@@ -1,5 +1,6 @@
-package controller;
+package com.senai.augusto.consultasmedicas.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import entidades.Consulta;
-import service.ConsultaService;
+import com.senai.augusto.consultasmedicas.entidades.Consulta;
+import com.senai.augusto.consultasmedicas.service.ConsultaService;
 
 @RestController
 @RequestMapping("consulta/")
@@ -32,8 +34,8 @@ public class ConsultaController {
 	}
 	
 	@PostMapping
-	public Consulta save(@RequestBody Consulta consulta) {
-		return this.consultaService.save(consulta);
+    public Consulta criarConsulta(@RequestParam Long medicoId, @RequestParam Long pacienteId, @RequestParam Date data, @RequestParam Integer horario) {
+		
 	}
 	
 	@DeleteMapping("{id}")

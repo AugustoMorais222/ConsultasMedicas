@@ -1,4 +1,4 @@
-package controller;
+package com.senai.augusto.consultasmedicas.controller;
 
 import java.util.List;
 
@@ -12,39 +12,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import entidades.Medico;
-import jakarta.annotation.PostConstruct;
-import service.MedicoService;
+import com.senai.augusto.consultasmedicas.entidades.Paciente;
+import com.senai.augusto.consultasmedicas.service.PacienteService;
 
 @RestController
-@RequestMapping("medico/")
-public class MedicoController {
-	
+@RequestMapping("paciente/")
+public class PacienteController {
 	@Autowired
-	private MedicoService medicoService;
+	private PacienteService pacienteService;
 	
 	@GetMapping("{id}")
-	public Medico findById(@PathVariable Integer id) {
-		return this.medicoService.findById(id);
+	public Paciente findById(@PathVariable Integer id) {
+		return this.pacienteService.findById(id);
 	}
 	
 	@GetMapping
-	public List<Medico> findAll(){
-		return this.medicoService.findAll();
+	public List<Paciente> findAll(){
+		return this.pacienteService.findAll();
 	}
 	
 	@PostMapping
-	public Medico save(@RequestBody Medico medico) {
-		return this.medicoService.save(medico);
+	public Paciente save(@RequestBody Paciente Paciente) {
+		return this.pacienteService.save(Paciente);
 	}
 	
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable Integer id) {
-		this.medicoService.delete(id);
+		this.pacienteService.delete(id);
 	}
 	
 	@PutMapping
-	public Medico update(@RequestBody Medico medico) {
-		return this.medicoService.update(medico);
+	public Paciente update(@RequestBody Paciente Paciente) {
+		return this.pacienteService.update(Paciente);
 	}
 }

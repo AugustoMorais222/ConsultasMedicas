@@ -1,12 +1,12 @@
-package service;
+package com.senai.augusto.consultasmedicas.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import entidades.Medico;
-import repository.MedicoRepository;
+import com.senai.augusto.consultasmedicas.entidades.Medico;
+import com.senai.augusto.consultasmedicas.repository.MedicoRepository;
 
 @Service
 public class MedicoService {
@@ -36,3 +36,4 @@ public class MedicoService {
 	}
 	
 }
+

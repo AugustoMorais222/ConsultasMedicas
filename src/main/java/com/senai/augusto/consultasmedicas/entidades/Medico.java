@@ -28,9 +28,11 @@ public class Medico {
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Consulta> consultas;
 
-	public Medico(Integer id, String nome, Integer crm, String especialidade) {
-		super();
-		this.id = id;
+	public Medico() {
+		
+	}
+	
+	public Medico(String nome, Integer crm, String especialidade) {
 		this.nome = nome;
 		this.crm = crm;
 		this.especialidade = especialidade;

@@ -30,7 +30,9 @@ public class Paciente {
     @Column(nullable = false)
     private String telefone;
 
-    public Paciente() {}
+    public Paciente() {
+    	
+    }
 
     public Paciente(String nome, String cpf, Date dataNascimento, String telefone) {
         this.nome = nome;

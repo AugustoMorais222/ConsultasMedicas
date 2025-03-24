@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,17 +25,20 @@ public class Consulta {
 	@Column
 	private Integer horario;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "paciente_id")
 	private Paciente paciente;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "medico_id")
 	private Medico medico;
 
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	
+	public Consulta() {
+		
+	}
 	
 	public Consulta(Date data, Integer horario, Paciente paciente, Medico medico, Status status) {
 		this.data = data;
@@ -61,7 +65,15 @@ public class Consulta {
 		return horario;
 	}
 
+	
 
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
 
 	public void setHorario(Integer horario) {
 		this.horario = horario;

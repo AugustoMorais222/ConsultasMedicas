@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.senai.augusto.consultasmedicas.dtos.ConsultaDTO;
 import com.senai.augusto.consultasmedicas.entidades.Consulta;
 import com.senai.augusto.consultasmedicas.service.ConsultaService;
 
@@ -24,19 +28,28 @@ public class ConsultaController {
 	private ConsultaService consultaService;
 	
 	@GetMapping("{id}")
-	public Consulta findById(@PathVariable Integer id) {
+	public ConsultaDTO findById(@PathVariable Integer id) {
 		return this.consultaService.findById(id);
 	}
 	
 	@GetMapping
-	public List<Consulta> findAll(){
+	public List<ConsultaDTO> findAll(){
 		return this.consultaService.findAll();
 	}
 	
 	@PostMapping
-    public Consulta criarConsulta(@RequestParam Long medicoId, @RequestParam Long pacienteId, @RequestParam Date data, @RequestParam Integer horario) {
-		
-	}
+    public ResponseEntity<?> agendarConsulta(@RequestParam Integer medicoId, 
+                                             @RequestParam Integer pacienteId,
+                                             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd")Date data, 
+                                             @RequestParam Integer horario) {
+        try {
+            Consulta consulta = consultaService.criarConsulta(medicoId, pacienteId, data, horario);
+            return new ResponseEntity<>(consulta, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
 	
 	@DeleteMapping("{id}")
 	public void delete(@PathVariable Integer id) {
